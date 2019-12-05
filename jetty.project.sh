@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
-if [ -d "jetty.project" ]; then
-  cd jetty.project
-  git pull
-else
-  git clone git@github.com:eclipse/jetty.project.git
-  cd jetty.project
+set -x
+
+if [ ! -d "jetty.project" ]; then
+  git clone git@gitee.com:gitsync/jetty.project.git
 fi
 
+cd jetty.project
+
 git remote add gitee git@gitee.com:gitsync/jetty.project.git
-git push -u gitee jetty-9.4.x
+git remote add github git@github.com:eclipse/jetty.project.git
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+git pull github $BRANCH
+git push -u gitee $BRANCH
