@@ -5,7 +5,7 @@ if [ ! -d "jetty.project" ]; then
   git clone git@gitee.com:gitsync/wiki.git
 fi
 
-cd jetty.project
+cd wiki
 
 git remote add gitee git@gitee.com:gitsync/wiki.git
 git remote add github git@github.com:Requarks/wiki.git
