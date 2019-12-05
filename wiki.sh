@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -x
 
-if [ ! -d "jetty.project" ]; then
+if [ ! -d "wiki" ]; then
   git clone git@gitee.com:gitsync/wiki.git
 fi
 
