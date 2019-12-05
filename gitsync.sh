@@ -23,6 +23,7 @@ function sync {
         cd ..
         rm -rf $DIR
         git clone $GITHUB
+        cd $DIR
         BRANCH=$(git rev-parse --abbrev-ref HEAD)
     fi
 
