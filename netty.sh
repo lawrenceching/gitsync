@@ -27,3 +27,5 @@ echo ">>> $BRANCH"
 
 git pull github $BRANCH
 git push -u gitee $BRANCH
+
+git --no-pager branch -a
