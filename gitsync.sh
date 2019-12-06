@@ -32,6 +32,7 @@ function sync {
     git pull github $BRANCH
     git push -u gitee $BRANCH
 
+    git pull github
     git branch -a
 
     git --no-pager branch -a | grep github | sed 's/*//g' | sed 's/ //g' | sed 's/remotes\/github\///g'
