@@ -5,7 +5,7 @@ function sync {
 
     echo "Synchronizing from $GITHUB to $GITEE"
 
-    DIR=$(echo $GITHUB | cut -d '/' -f 2 | cut -d '.' -f 1)
+    DIR=$(echo $GITHUB | cut -d '/' -f 2 | sed s/.git//g)
 
     if [ ! -d "$DIR" ]; then
         git clone $GITEE
