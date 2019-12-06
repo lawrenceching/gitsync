@@ -8,13 +8,10 @@ function sync {
     DIR=$(echo $GITHUB | cut -d '/' -f 2 | cut -d '.' -f 1)
 
     if [ ! -d "$DIR" ]; then
-    git clone $GITEE
+        git clone $GITEE
     fi
 
     cd $DIR
-
-    git remote add gitee $GITEE
-    git remote add github $GITHUB
 
     BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
@@ -28,6 +25,9 @@ function sync {
     fi
 
     echo "Current branch: $BRANCH"
+
+    git remote add gitee $GITEE
+    git remote add github $GITHUB
 
     git pull github $BRANCH
     git push -u gitee $BRANCH
