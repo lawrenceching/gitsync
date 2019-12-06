@@ -32,6 +32,14 @@ function sync {
     git pull github $BRANCH
     git push -u gitee $BRANCH
 
-    git --no-pager branch -a
+    readarray -t BRANCHES < <(git --no-pager branch -a | grep github | sed 's/*//g' | sed 's/ //g' | sed 's/remotes\/github\///g')
+    for BRANCH in "${BRANCHES[@]}"
+    do
+        echo "Synchronizing github/$BRANCH"
+        git checkout -t github/$BRANCH || git checkout github/$BRANCH
+        git status
+        git push -u gitee BRANCH
+    done
+
 
 }
