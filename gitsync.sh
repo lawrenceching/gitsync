@@ -40,7 +40,7 @@ function sync {
     for BRANCH in "${BRANCHES[@]}"
     do
         echo "Synchronizing github/$BRANCH"
-        git checkout -t github/$BRANCH || git checkout github/$BRANCH
+        git checkout -t github/$BRANCH || git checkout $BRANCH
         git status
         git pull
         git push -u gitee $BRANCH
