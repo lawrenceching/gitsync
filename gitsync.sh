@@ -8,10 +8,13 @@ function sync {
     DIR=$(echo $GITHUB | cut -d '/' -f 2 | sed s/.git//g)
 
     if [ ! -d "$DIR" ]; then
+        echo "$DIR is not found, trying to clone the repository from ${GITEE}"
         git clone $GITEE
     fi
 
     cd $DIR
+
+
 
     BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
@@ -40,8 +43,9 @@ function sync {
     for BRANCH in "${BRANCHES[@]}"
     do
         echo "Synchronizing github/$BRANCH"
-        git checkout -t github/$BRANCH || git checkout github/$BRANCH
+        git checkout -t github/$BRANCH || git checkout $BRANCH
         git status
+        git pull github $BRANCH
         git push -u gitee $BRANCH
     done
 
