@@ -2,4 +2,4 @@
 set -x
 
 source ./gitsync.sh
-sync "git@github.com:microsoft/vscode.git" "git@gitee.com:gitsync/vscode.git"
+sync "https://github.com/microsoft/vscode.git" "git@gitee.com:gitsync/vscode.git"
