@@ -5,7 +5,12 @@ function sync {
 
     echo "Synchronizing from $GITHUB to $GITEE"
 
-    DIR=$(echo $GITHUB | cut -d '/' -f 2 | sed s/.git//g)
+    if [[ $GITHUB == https* ]] ;
+    then
+        DIR=$(echo $GITHUB | cut -d '/' -f 5 | sed s/.git//g)
+    else
+        DIR=$(echo $GITHUB | cut -d '/' -f 2 | sed s/.git//g)
+    fi
 
     if [ ! -d "$DIR" ]; then
         echo "$DIR is not found, trying to clone the repository from ${GITEE}"
